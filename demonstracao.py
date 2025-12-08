@@ -26,17 +26,18 @@ diario_de_classe = {
 # FUNÇÕES DE LÓGICA E BD
 # =========================================================================
 
-# CÓDIGO ATUAL (Errado)
+# CÓDIGO ATUAL (Com Erro de Indentação)
 @st.cache_resource
-    def criar_e_popular_sqlite(): # <--- ERRO: Indentação aqui
-    conn = sqlite3.connect(DB_NAME) # <--- ERRO: Indentação aqui
-    cursor = conn.cursor()
+    def criar_e_popular_sqlite(): # <--- ERRO: Espaço antes do 'def'
+    conn = sqlite3.connect(DB_NAME) # <--- ERRO: Indentação inválida
+# ...
 
-# CÓDIGO CORRIGIDO (Tudo alinhado)
+# CÓDIGO CORRIGIDO (Alinhado)
 @st.cache_resource
 def criar_e_popular_sqlite():
-    conn = sqlite3.connect(DB_NAME)
-    cursor = conn.cursor()
+    conn = sqlite3.connect(DB_NAME) # <--- 4 espaços
+    cursor = conn.cursor() # <--- 4 espaços
+    # ...
 # ... E o restante do código da função deve seguir a indentação correta (4 espaços)
     
     # 2. CRIAÇÃO DAS TABELAS

@@ -26,8 +26,8 @@ diario_de_classe = {
 # FUNÇÕES DE LÓGICA E BD
 # =========================================================================
 
-@st.cache_resource
-def criar_e_popular_sqlite():
+    @st.cache_resource
+    def criar_e_popular_sqlite():
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
 
@@ -55,7 +55,7 @@ def criar_e_popular_sqlite():
     cursor.execute("REPLACE INTO Turmas (id_turma, nome_turma, ano_letivo) VALUES (?, ?, ?)", (id_turma_padrao, "Exemplo 2025/1", 2025))
     
     # Nova Versão (Exemplo para Educação Básica):
-disciplinas_list = ["Língua Portuguesa", "Matemática", "Ciências", "História", "Geografia", "Artes"]
+    disciplinas_list = ["Língua Portuguesa", "Matemática", "Ciências", "História", "Geografia", "Artes"]
     for i, disc in enumerate(disciplinas_list): 
         cursor.execute("REPLACE INTO Disciplinas (id_disciplina, nome_disciplina) VALUES (?, ?)", (i+1, disc))
     cursor.execute("SELECT id_disciplina, nome_disciplina FROM Disciplinas")
@@ -76,7 +76,7 @@ disciplinas_list = ["Língua Portuguesa", "Matemática", "Ciências", "História
     return aluno_map, disciplina_map
 
 
-def calcular_media_final(avaliacoes):
+    def calcular_media_final(avaliacoes):
     p1_val = avaliacoes.get("P1"); p2_val = avaliacoes.get("P2"); p3_val = avaliacoes.get("P3")
     
     # Tratamento para garantir que None/NaN sejam 0.0 na média parcial
@@ -103,7 +103,7 @@ def calcular_media_final(avaliacoes):
     
     return nota_final, situacao_nota, media_parcial
 
-def lancar_aula_e_frequencia(id_disciplina, data_aula, conteudo):
+    def lancar_aula_e_frequencia(id_disciplina, data_aula, conteudo):
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
     id_turma_padrao = 1
@@ -129,7 +129,7 @@ def lancar_aula_e_frequencia(id_disciplina, data_aula, conteudo):
     finally:
         conn.close()
 
-def inserir_nota_no_db(id_aluno, id_disciplina, tipo_avaliacao, valor_nota):
+    def inserir_nota_no_db(id_aluno, id_disciplina, tipo_avaliacao, valor_nota):
     if valor_nota is None or valor_nota < 0 or valor_nota > 10.0:
         st.warning("⚠️ Erro: Insira um valor de nota válido (0.0 a 10.0).")
         return
@@ -144,7 +144,7 @@ def inserir_nota_no_db(id_aluno, id_disciplina, tipo_avaliacao, valor_nota):
         st.error(f"❌ Erro ao inserir nota: {e}")
     finally: conn.close()
 
-def obter_frequencia_por_aula(id_disciplina, data_aula):
+    def obter_frequencia_por_aula(id_disciplina, data_aula):
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
     id_turma_padrao = 1
@@ -177,7 +177,7 @@ def obter_frequencia_por_aula(id_disciplina, data_aula):
     df['Opção'] = df['id_frequencia'].astype(str) + ' - ' + df['Aluno']
     return df, id_aula
 
-def atualizar_status_frequencia(id_frequencia, novo_status):
+    def atualizar_status_frequencia(id_frequencia, novo_status):
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
     try:
@@ -191,7 +191,7 @@ def atualizar_status_frequencia(id_frequencia, novo_status):
     finally:
         conn.close()
 
-def gerar_relatorio_final_completo(): 
+    def gerar_relatorio_final_completo(): 
     try:
         conn = sqlite3.connect(DB_NAME)
         query_sql_completa = """

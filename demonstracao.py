@@ -269,9 +269,10 @@ def main():
     # =========================================================================
     # 3. AUTENTICAÇÃO HARDCODED (APENAS PARA TESTE RÁPIDO)
     # =========================================================================
-    # ESTAS CREDENCIAIS SÃO FIXAS: professor_marcos / 20710350Mar#
-    usuario_correto = "professor_marcos" 
-    SENHA_CORRETA = "20710350Mar#" 
+   # MUDANÇA PARA A VERSÃO DE TESTES/DEMONSTRAÇÃO
+# ESTAS CREDENCIAIS SÃO FIXAS: demonstracao / Teste2026
+    usuario_correto = "demonstracao" 
+    SENHA_CORRETA = "Teste2026"
         
     st.sidebar.title("Login")
 
